@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第二章 - 双语轻小说阅读</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="site-title">第二章：相遇之時</h1>
+            <nav class="chapter-nav">
+                <select id="chapter-select" onchange="window.location.href=this.value">
+                    <option value="chapter1.html">第一章：開始的序章</option>
+                    <option value="chapter2.html" selected>第二章：相遇之時</option>
+                    <option value="chapter3.html">第三章：命運的抉擇</option>
+                </select>
+            </nav>
+        </header>
+
+        <main class="novel-content">
+            <div class="paragraph-container">
+                <div class="paragraph">
+                    <div class="chinese">
+                        「圖書館的角落裡，一道身影正專注地翻閱著古老的書籍。」
+                    </div>
+                    <div class="japanese">
+                        「図書館の隅で、一つの影が古い本を熱心に読んでいた。」
+                    </div>
+                </div>
+
+                <div class="paragraph">
+                    <div class="chinese">
+                        「那是我第一次見到她，也是命運的齒輪開始轉動的瞬間。」
+                    </div>
+                    <div class="japanese">
+                        「それは私が彼女に初めて出会った時であり、運命の歯車が動き出した瞬間でもあった。」
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="controls">
+                <button onclick="window.location.href='chapter1.html'" class="prev-button">上一章</button>
+                <button onclick="window.location.href='../index.html'" class="home-button">回到首頁</button>
+                <button onclick="window.location.href='chapter3.html'" class="next-button">下一章</button>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 

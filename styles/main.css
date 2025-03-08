@@ -1,0 +1,178 @@
+/* 全局样式 */
+:root {
+    --primary-color: #4a4a4a;
+    --background-color: #f5f5f5;
+    --text-color: #333;
+    --border-color: #ddd;
+    --accent-color: #3498db;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* 头部样式 */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.site-title {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.site-description {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* 章节列表样式 */
+.chapter-list {
+    display: grid;
+    gap: 2rem;
+}
+
+.chapter-item {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.chapter-item:hover {
+    transform: translateY(-2px);
+}
+
+.chapter-item h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.chapter-description {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.read-button {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.read-button:hover {
+    background-color: #2980b9;
+}
+
+/* 正文样式 */
+.novel-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.paragraph {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.paragraph:last-child {
+    border-bottom: none;
+}
+
+.chinese {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.8;
+}
+
+.japanese {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.8;
+}
+
+/* 导航样式 */
+.chapter-nav {
+    margin-bottom: 2rem;
+}
+
+#chapter-select {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: white;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* 底部控制栏 */
+footer {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.controls button {
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    font-size: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.controls button:hover {
+    background-color: #333;
+}
+
+.footer-text {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .novel-content {
+        padding: 1rem;
+    }
+
+    .chinese, .japanese {
+        font-size: 1rem;
+    }
+    
+    .chapter-item {
+        padding: 1.5rem;
+    }
+} 
