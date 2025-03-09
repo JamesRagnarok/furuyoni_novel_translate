@@ -57,14 +57,50 @@ async function loadNovelContent(chinesePath, japanesePath) {
         
         contentContainer.innerHTML = '';
 
+        // 首先插入行號為0的圖片（如果有的話）
+        imageElements.forEach(imgDef => {
+            const insertAfterLine = parseInt(imgDef.dataset.insertAfterLine);
+            if (insertAfterLine === 0) {
+                const imgContainer = document.createElement('div');
+                imgContainer.className = 'image-paragraph';
+                imgContainer.innerHTML = imgDef.innerHTML;
+                contentContainer.appendChild(imgContainer);
+            }
+        });
+
         // 逐行創建段落，並在指定位置插入圖片
         const maxLines = Math.max(chineseLines.length, japaneseLines.length);
+        let emptyLineCount = 0; // 追蹤連續空白行數量
+        
         for (let i = 0; i < maxLines; i++) {
-            // 創建段落（即使是空行也要計入）
+            // 檢查當前行及其前後行的狀態
+            const currentLineEmpty = !(chineseLines[i]?.trim() || japaneseLines[i]?.trim());
+            const prevLineHasContent = i > 0 && (chineseLines[i-1]?.trim() || japaneseLines[i-1]?.trim());
+            
+            // 創建段落（即使是空行也要計入，但可能不會顯示）
             const paragraph = document.createElement('div');
             paragraph.className = 'paragraph';
 
-            if (chineseLines[i]?.trim() || japaneseLines[i]?.trim()) {
+            // 處理空白行計數和顯示邏輯
+            if (currentLineEmpty) {
+                if (prevLineHasContent) {
+                    // 文字行後的第一個空白行，不顯示
+                    emptyLineCount = 1;
+                } else {
+                    // 非文字行後的第一個空白行
+                    emptyLineCount++;
+                }
+            } else {
+                // 非空白行，重置計數
+                emptyLineCount = 0;
+            }
+
+            // 決定是否顯示此行
+            const shouldDisplay = !currentLineEmpty || // 有內容的行顯示
+                                (currentLineEmpty && !prevLineHasContent && // 不是文字行後的第一個空白行
+                                 (emptyLineCount === 1 || emptyLineCount % 3 === 1)); // 每三個空白行顯示第一個
+
+            if (shouldDisplay) {
                 if (chineseLines[i]?.trim()) {
                     const chineseP = document.createElement('p');
                     chineseP.className = 'chinese';
@@ -77,6 +113,14 @@ async function loadNovelContent(chinesePath, japanesePath) {
                     japaneseP.className = 'japanese';
                     japaneseP.innerHTML = japaneseLines[i];
                     paragraph.appendChild(japaneseP);
+                }
+
+                // 如果是需要保留的空白行，添加一個空的段落以保持間距
+                if (currentLineEmpty) {
+                    const spacerP = document.createElement('p');
+                    spacerP.className = 'spacer';
+                    spacerP.innerHTML = '&nbsp;';
+                    paragraph.appendChild(spacerP);
                 }
             }
 
